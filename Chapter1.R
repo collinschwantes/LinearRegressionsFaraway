@@ -50,6 +50,9 @@ summary(uswages)
 
 # Experience has a negative value
 # sample consists largely of white rural males 
+# poor design of dataset for analysis - very wide, geo could be collapsed to one column
+
+
 
 ggpairs(uswages[c(1:5,10)])
 ggpairs(uswages[c(1:5,8)])
