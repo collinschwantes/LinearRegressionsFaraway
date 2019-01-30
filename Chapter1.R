@@ -4,6 +4,7 @@ library(faraway)
 library(ggplot2)
 library(dplyr)
 library(GGally)
+library(lubridate)
  
 # Notes 
 # 
@@ -60,4 +61,39 @@ ggpairs(uswages[c(1:5,8)])
 ggplot(uswages, aes(x = exper, y = educ, size = wage) )+
   geom_point() +
   facet_wrap(~race)
+
+
+# problem 3 visualize prostate
+data(pro)
+
+prostate$svi <- as.factor(prostate$svi)
+
+#the log transformation does not create normaldistributions as expected
+# prostate invasion is a categorical variable
+
+summary(prostate)
+str(prostate)
+
+ggpairs(prostate)
+
+ggplot(prostate, aes(x = lpsa, y = lcavol, size = lcp)) +
+  geom_point() +
+  xlab("log(prostate specific antigen)") +
+  ylab("log(cancer volume)") +
+  facet_wrap(~svi)
+
+#problem 4
+data(div)
+
+str(divusa)
+
+summary(divusa)
+
+ggpairs(divusa)
+
+ggplot(divusa, aes(x = year, y = divorce)) +
+  geom_path() +
+  geom_path(aes(y = military), lty = 2) +
+  geom_path(aes(y = femlab), lty = 3) +
+  ylab("rate per 100,000")
 
